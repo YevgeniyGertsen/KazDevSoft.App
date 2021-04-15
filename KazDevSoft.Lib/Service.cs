@@ -9,49 +9,87 @@ using System.Xml.Serialization;
 
 namespace KazDevSoft.Lib
 {
-    class Service
+    public class Service
     {
-        DirectoryInfo di = null;
-        public Service(string route)
+        public Service(string rootPath)
         {
-            if (string.IsNullOrWhiteSpace(route))
+            if (string.IsNullOrWhiteSpace(rootPath))
                 throw new Exception("Укажите корректный путь.");
-            di = new DirectoryInfo(route);
-            if (!di.Exists)
-                di.Create();
-            this.route = route;
-        }
-        public string route { get; private set; }
-        public void UserCreate(User worker)
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(User));
-            DirectoryInfo users = di.CreateSubdirectory("user");
-            string path = users.FullName + @"\" + worker.Id + ".xml";
 
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate)) 
+            rootDir = new DirectoryInfo(rootPath);
+            if (!rootDir.Exists)
+                rootDir.Create();
+
+            pathToUsersList = Path.Combine(rootDir.FullName, "Users.xml");
+        }
+
+        private DirectoryInfo rootDir = null;
+        private string pathToUsersList;
+
+        /// <summary>
+        /// метод создания пользователя
+        /// </summary>
+        /// <param name="user"></param>
+        public bool UserCreate(User user)
+        {
+            try
             {
-                xmlSerializer.Serialize(fs, worker);
+                //1. Создаем директорию Users
+                DirectoryInfo userDir = rootDir.CreateSubdirectory("Users");
+
+                //2. Путь к файлу с данными о пользователе
+                string path = Path.Combine(userDir.FullName, user.Id + ".xml");
+
+                //3. Производим сериализацию
+                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(User));
+                    xmlSerializer.Serialize(fs, user);
+                }
+
+                //4. Добавлем в список пользователей, вновь добавленного пользователя
+                AddUserToList(user);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 
-        public void AddUserToList(User worker)
+        /// <summary>
+        /// Методж добавления пользователя в список
+        /// </summary>
+        /// <param name="worker"></param>
+        private void AddUserToList(User worker)
         {
-            FileInfo fi = new FileInfo(Path.Combine(di.FullName, "users.xml"));
-            XmlDocument xmlDocument = new XmlDocument();
-            if (!fi.Exists)
-            {
-                XmlElement xmlElement = xmlDocument.CreateElement("users");
-                xmlDocument.AppendChild(xmlElement);
-                xmlDocument.Save(fi.FullName);
-            }
+            XmlDocument xmlDoc = new XmlDocument();
 
-            XmlElement xmlTag = xmlDocument.CreateElement("user");
-            xmlTag.InnerText = worker.FullName;
+            if (!File.Exists(pathToUsersList))
+                xmlDoc.AppendChild(xmlDoc.CreateElement("Users"));
+            else
+                xmlDoc.Load(pathToUsersList);
+
+            worker.GetXmlNode(xmlDoc);
+            xmlDoc.Save(pathToUsersList);
         }
 
-        public void ChangeUser(User worker)
+        public List<User> GetUsers()
         {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(pathToUsersList);
 
+            List<User> users = new List<User>();
+            foreach (XmlNode item in xmlDoc.DocumentElement.SelectNodes("User"))
+            {
+                users.Add(new User()
+                {
+                    Id = Int32.Parse(item.SelectSingleNode("Id").InnerText),
+                    FullName = item.SelectSingleNode("FullName").InnerText
+                }) ;
+            }
+
+            return users;
         }
     }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<User xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>5</Id>
+  <FullName>Омид Тахвили</FullName>
+  <Age>0</Age>
+  <Iin>880111300392</Iin>
+  <CreateDate>0001-01-01T00:00:00</CreateDate>
+  <Salary>200000</Salary>
+</User>

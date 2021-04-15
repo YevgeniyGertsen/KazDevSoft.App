@@ -1,0 +1,26 @@
+<Users>
+  <User>
+    <Id>1</Id>
+    <FullName>Хоакин Гусман Лоэра</FullName>
+  </User>
+  <User>
+    <Id>2</Id>
+    <FullName>Давуд Ибрагим</FullName>
+  </User>
+  <User>
+    <Id>3</Id>
+    <FullName>Маттео Мессина Денаро</FullName>
+  </User>
+  <User>
+    <Id>4</Id>
+    <FullName>Фелисьен Кабуга</FullName>
+  </User>
+  <User>
+    <Id>5</Id>
+    <FullName>Омид Тахвили</FullName>
+  </User>
+  <User>
+    <Id>6</Id>
+    <FullName>Джозеф Кони</FullName>
+  </User>
+</Users>

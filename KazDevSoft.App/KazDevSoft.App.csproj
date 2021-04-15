@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KazDevSoft.Lib\KazDevSoft.Lib.csproj">
+      <Project>{63bcf4aa-7821-48de-bf8d-8ede1ced62a6}</Project>
+      <Name>KazDevSoft.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
