@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30709.132
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KazDevSoft.App", "KazDevSoft.App\KazDevSoft.App.csproj", "{57142F8C-1CC3-4F8E-AA81-A9E43BB09ADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KazDevSoft.Lib", "KazDevSoft.Lib\KazDevSoft.Lib.csproj", "{63BCF4AA-7821-48DE-BF8D-8EDE1CED62A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57142F8C-1CC3-4F8E-AA81-A9E43BB09ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57142F8C-1CC3-4F8E-AA81-A9E43BB09ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57142F8C-1CC3-4F8E-AA81-A9E43BB09ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57142F8C-1CC3-4F8E-AA81-A9E43BB09ADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63BCF4AA-7821-48DE-BF8D-8EDE1CED62A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63BCF4AA-7821-48DE-BF8D-8EDE1CED62A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63BCF4AA-7821-48DE-BF8D-8EDE1CED62A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63BCF4AA-7821-48DE-BF8D-8EDE1CED62A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDFA6831-1CD0-4A60-B8EA-8AB5E1C7613D}
+	EndGlobalSection
+EndGlobal
